@@ -24,8 +24,7 @@ const questions = [
         type: 'list',
         name: 'intro',
         message: 'What would you like to do?',
-        choices: ['View All Departments', 'View All Roles', 'View All Employees']
-        // choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add A Department', 'Add A Role', 'Add An Employee', 'Update An Employee Role']
+        choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add A Department', 'Add A Role', 'Add An Employee', 'Update An Employee Role']
     }
 ];
 
@@ -76,7 +75,7 @@ const addEmployee = [
         type: 'list',
         name: 'manager',
         message: "Who is the new employee's manager?",
-        choices: []// pull choices from employee table with manager_id
+        choices: [] // pull choices from employee table with manager_id
     }
 ]
 
@@ -108,36 +107,35 @@ init = () => {
                 console.table(sql);
                 init();
             }
-            // else if (questions.choices === 'View All Employees') {
-            else {
+            else if (questions.choices === 'View All Employees') {
                 let sql = `SELECT * FROM employee;`;
                 console.table(sql);
                 init();
             }
-            // else if (questions.choices === 'Add A Department') {
-            //     inquirer.prompt(addDepartment)
-            //         .then(answers) // insert into Department table
-            //         .then(console.log(`(new department) has been added to the database`))
-            //         .then(init());
-            // }
-            // else if (questions.choices === 'Add A Role') {
-            //     inquirer.prompt(addRole)
-            //         .then(answers) // insert into Roles table
-            //         .then(console.log(`(new role) has been added to the database`))
-            //         .then(init());
-            // }
-            // else if (questions.choices === 'Add An Employee') {
-            //     inquirer.prompt(addEmployee)
-            //         .then(answers) // insert into Employees table
-            //         .then(console.log(`(new employee) has been added to the database`))
-            //         .then(init());
-            // }
-            // else {
-            //     inquirer.prompt(updateRole)
-            //         .then(answers) // change role in table
-            //         .then(console.log(`(employee name)'s new role is now (new role)`))
-            //         .then(init());
-            // }
+            else if (questions.choices === 'Add A Department') {
+                inquirer.prompt(addDepartment)
+                    .then(answers) // insert into Department table
+                    .then(console.log(`(new department) has been added to the database`))
+                    .then(init());
+            }
+            else if (questions.choices === 'Add A Role') {
+                inquirer.prompt(addRole)
+                    .then(answers) // insert into Roles table
+                    .then(console.log(`(new role) has been added to the database`))
+                    .then(init());
+            }
+            else if (questions.choices === 'Add An Employee') {
+                inquirer.prompt(addEmployee)
+                    .then(answers) // insert into Employees table
+                    .then(console.log(`(new employee) has been added to the database`))
+                    .then(init());
+            }
+            else {
+                inquirer.prompt(updateRole)
+                    .then(answers) // change role in table
+                    .then(console.log(`(employee name)'s new role is now (new role)`))
+                    .then(init());
+            }
         })
 };
 
